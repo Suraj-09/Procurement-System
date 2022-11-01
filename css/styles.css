@@ -1,0 +1,374 @@
+:root {
+  --color-primary: #c3c3c3;
+  --border-color-primary: #7f7f7f;
+  --icon-primary: #ffc90e;
+  --menu-primary: #f2f2f2;
+  --menu-border: #d4d4d4;
+  --input-border-primary: #880015;
+  --input-fill-primary: #fdf3dc;
+  --comments-primary: #5650ff;
+}
+
+/* Typography */
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 2rem;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: "Gemunu Libre", sans-serif;
+  font-size: 3rem;
+}
+
+h2 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 4rem;
+  font-weight: 400;
+  margin-bottom: 3.75rem;
+}
+
+.comment {
+  font-size: 1.5rem;
+  color: var(--comments-primary);
+}
+
+.link--toYellow {
+  color: #222;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.link--toYellow:hover {
+  color: var(--icon-primary);
+  font-weight: 600;
+}
+
+/* Nav */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+  border-bottom: 1px solid var(--border-color-primary);
+  background-color: var(--color-primary);
+}
+
+/* Icons */
+
+i {
+  color: var(--icon-primary); /* fill property not used since WebP format */
+  margin: 1rem;
+  padding: 0.7rem;
+}
+
+.icon--dropdown {
+  color: lightgreen;
+  transition: transform 0.3s;
+  margin: 0;
+  padding-left: 0.5rem;
+}
+
+/* Buttons */
+
+.btn {
+  border: 0;
+}
+
+.btn--dropdown {
+  background-color: var(--color-primary);
+  color: green;
+  padding: 1rem;
+  border-left: 2px solid var(--menu-border);
+}
+
+.btn--form {
+  border: 2px solid var(--menu-border);
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-right: 3rem;
+  color: #fff;
+  background: linear-gradient(tomato, orange);
+}
+
+.btn--form:hover {
+  background: red;
+}
+
+/* Dropdown */
+
+.dropdown-content {
+  visibility: hidden;
+  position: absolute;
+  background-color: var(--menu-primary);
+  z-index: 1;
+  width: 12.5rem;
+  opacity: 0;
+}
+
+.dropdown-content .link--toYellow {
+  display: block;
+  text-align: center;
+  font-size: 1.8rem;
+  line-height: 2.5;
+  border: 2px solid var(--menu-border);
+  border-top: 1px solid var(--border-color-primary);
+}
+
+.nav__dropdown:hover .icon--dropdown {
+  transform: rotate(360deg);
+}
+
+.nav__dropdown:hover .dropdown-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.nav__dropdown:hover .dropdown-content {
+  transition: opacity 0.3s;
+}
+
+/* Collabsibles */
+
+.collapsible-content {
+  max-height: 77px; /*menu__toggler width */
+  transition: all 0.3s;
+}
+
+.collapsible--expanded .collapsible-content {
+  max-height: 100%;
+}
+
+.collapsible--expanded #menu__toggler {
+  background-color: #fff;
+  rotate: 90deg;
+}
+
+.collapsible--expanded .item__text {
+  opacity: 1;
+}
+
+@media screen and (min-width: 975px) {
+  .collapsible-content {
+    max-width: 71px; /*menu__toggler width */
+    max-height: 100%;
+    transition: all 0.3s;
+  }
+
+  .collapsible--expanded .collapsible-content {
+    max-width: 100%;
+  }
+
+  .collapsible--expanded .collapsible-content {
+    max-width: 222px; /* revealed when collapsible--expanded class is toggled */
+  }
+}
+
+/* Blocks */
+
+.block {
+  /* fixes bottom indentation of block despite nav height of 5.5rem */
+  height: calc(100vh - 5.5rem);
+}
+
+/* Grids */
+
+.grid {
+  display: grid;
+}
+
+.grid--main {
+  height: 100%;
+  width: 100%;
+}
+
+.grid--1x2 {
+  grid-template-rows: min-content 1fr;
+  grid-template-columns: 100%;
+}
+
+@media screen and (min-width: 975px) {
+  .grid--1x2 {
+    grid-template-rows: 100%;
+    grid-template-columns: min-content 1fr;
+  }
+}
+
+/* Flex */
+
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Menu */
+
+.menu {
+  background-color: var(--menu-primary);
+}
+
+#clickable {
+  cursor: pointer;
+}
+
+#menu__toggler {
+  margin: 1rem;
+  padding: 0.7rem;
+  border: 1px solid #333;
+  border-radius: 15px;
+  background: var(--menu-primary);
+  transition: all 0.3s;
+}
+
+.menu__list {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 5rem;
+  border-top: 1px solid var(--menu-border);
+  white-space: nowrap; /* menu items stay on the same line when compressed */
+  overflow: hidden;
+}
+
+.menu__item {
+  flex-basis: 100%;
+  border-bottom: 1px solid var(--menu-border);
+}
+
+.menu__icons {
+  margin-left: 1.4rem;
+  margin-right: 1rem;
+  width: 4.5rem;
+}
+
+.item__text {
+  opacity: 0;
+  text-align: center;
+  transition: 0.3s;
+}
+
+#clickable:hover #menu__toggler {
+  transform: scale(1.05);
+  background-color: #fff;
+}
+
+@media screen and (min-width: 975px) {
+  .menu__list {
+    width: 20vw;
+  }
+}
+
+/* Right */
+
+.right {
+  padding-top: 0.5rem;
+  padding-left: 2rem;
+  position: relative; /* in order to set .botRight to absolute */
+}
+
+.right {
+  border-top: 1px solid var(--menu-border);
+}
+
+@media screen and (min-width: 975px) {
+  .right {
+    border-left: 2px solid var(--menu-border);
+    border-top: 0;
+  }
+}
+
+/* Forms */
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+input,
+textarea {
+  /*applies only to input of attribute text and email*/
+  border: 2px solid var(--input-border-primary);
+  border-radius: 5px;
+  padding: 0.5rem; /* padding within the input box */
+  transition: border-color 0.15s, box-shadow 0.15s; /* spmoothens transition over 0.15s for property changes */
+  background-color: var(--input-fill-primary);
+}
+
+input[type="number"] {
+  width: 17rem;
+}
+
+input:focus {
+  outline: 0; /* gets rid of browser default settings to enable css border color customization */
+  box-shadow: 0 0 0 3px rgba(165, 42, 42, 0.25);
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+}
+
+textarea:focus {
+  outline: 0; /* gets rid of browser default settings to enable css border color customization */
+  box-shadow: 0 0 0 3px rgba(165, 42, 42, 0.25);
+}
+
+.form-group {
+  margin-bottom: 2rem;
+  margin-right: 20%;
+  display: inline-block;
+}
+
+.form-group--TA {
+  flex-basis: 80%;
+}
+
+.form__buttons {
+  flex-basis: 100%;
+  margin-top: 2rem;
+}
+
+/* absolute */
+
+.botRight {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.setHome {
+  border: 2px solid var(--menu-border);
+  padding-left: 2rem;
+  padding-right: 0;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.setHome .menu__icons {
+  margin-left: 0;
+}
+
+@media screen and (min-width: 975px) {
+  .botRight {
+    position: absolute;
+    bottom: 4rem;
+    right: 3rem;
+  }
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gemunu+Libre&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/def015ebdb.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Procurement</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <h1>-AcqSys-</h1>
+        <div class="nav__dropdown">
+          <button class="btn btn--dropdown">
+            Signed in
+            <i class="icon--dropdown fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a class="link--toYellow" href="#">My Account</a>
+            <a class="link--toYellow" href="/sign-in.html">Sign Out</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="block">
+        <div class="grid grid--main grid--1x2">
+          <section class="menu flex collapsible collapsible--expanded">
+            <ul class="menu__list collapsible-content">
+              <li class="menu__item flex" id="clickable">
+                <i id="menu__toggler" class="fa-solid fa-bars fa-2x"></i>
+              </li>
+              <li class="menu__item">
+                <a class="link--toYellow" href="#">
+                  <i class="menu__icons fa-solid fa-house fa-lg"></i
+                  ><span class="item__text"> Home </span>
+                </a>
+              </li>
+              <li class="menu__item">
+                <a class="link--toYellow" href="#">
+                  <i class="menu__icons fa-solid fa-hand-holding fa-lg"></i
+                  ><span class="item__text"> Request Item </span>
+                </a>
+              </li>
+              <li class="menu__item">
+                <a class="link--toYellow" href="#">
+                  <i class="menu__icons fa-regular fa-square-plus fa-lg"></i
+                  ><span class="item__text"> Add Feature </span>
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          <section class="right">
+            <header><h2>Request Item</h2></header>
+
+            <form action="" method="">
+              <div class="form-group request">
+                <label for="item">Item requested</label>
+                <input
+                  type="text"
+                  list="items"
+                  autofocus
+                  autocomplete="off"
+                  name="item"
+                />
+                <datalist id="items">
+                  <option>Microsoft Office 365</option>
+                  <option>Visual Studio Code</option>
+                  <option>Adobe Photoshop</option>
+                  <option>Google Chrome</option>
+                </datalist>
+              </div>
+
+              <div class="form-group">
+                <label for="price"
+                  >Price <span class="comment">($)</span>
+                </label>
+                <input
+                  type="number"
+                  id="price"
+                  min="0"
+                  step="any"
+                  required
+                  name="price"
+                />
+              </div>
+
+              <div class="form-group form-group--TA">
+                <label for="reason">Reason for request</label>
+                <textarea
+                  id="someText"
+                  cols="30"
+                  rows="7"
+                  name="reason"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="managerName"
+                  >Manager's name
+                  <span class="comment"
+                    >(Approval may prove mandatory)</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  id="managerName"
+                  minlength="3"
+                  maxlength="20"
+                  required
+                  name="name"
+                />
+              </div>
+
+              <div class="form__buttons">
+                <button class="btn btn--form" type="reset">Clear</button>
+                <button class="btn btn--form" type="submit">
+                  Submit Request
+                </button>
+              </div>
+            </form>
+            <div class="botRight">
+              <button class="setHome">
+                Set to<i class="menu__icons fa-solid fa-house fa-lg"></i>
+              </button>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
