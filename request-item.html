@@ -65,7 +65,75 @@
             </ul>
           </section>
 
-          <section class="right"></section>
+          <section class="right">
+            <header><h2>Request Item</h2></header>
+            <form action="" method="">
+              <div class="form-group request">
+                <label for="item">Item requested</label>
+                <input
+                  type="text"
+                  list="items"
+                  autofocus
+                  autocomplete="off"
+                  name="item"
+                />
+                <datalist id="items">
+                  <option>Microsoft Office 365</option>
+                  <option>Visual Studio Code</option>
+                  <option>Adobe Photoshop</option>
+                  <option>Google Chrome</option>
+                </datalist>
+              </div>
+
+              <div class="form-group">
+                <label for="quantity"
+                  >Quantity <span class="comment"></span>
+                </label>
+                <input
+                  type="number"
+                  id="quantity"
+                  min="0"
+                  step="any"
+                  required
+                  name="quantity"
+                />
+              </div>
+
+              <div class="form-group form-group--TA">
+                <label for="reason">Reason for request</label>
+                <textarea
+                  id="someText"
+                  cols="30"
+                  rows="7"
+                  name="reason"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="managerName"
+                  >Manager's name
+                  <span class="comment"
+                    >(Approval may prove mandatory)</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  id="managerName"
+                  minlength="3"
+                  maxlength="20"
+                  required
+                  name="name"
+                />
+              </div>
+
+              <div class="form__buttons">
+                <button class="btn btn--form" type="reset">Clear</button>
+                <button class="btn btn--form" type="submit">
+                  Submit Request
+                </button>
+              </div>
+            </form>
+          </section>
         </div>
       </section>
     </main>
