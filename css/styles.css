@@ -346,29 +346,3 @@ textarea:focus {
   margin-top: 2rem;
 }
 
-/* absolute */
-
-.botRight {
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-}
-
-.setHome {
-  border: 2px solid var(--menu-border);
-  padding-left: 2rem;
-  padding-right: 0;
-  border-radius: 15px;
-  cursor: pointer;
-}
-
-.setHome .menu__icons {
-  margin-left: 0;
-}
-
-@media screen and (min-width: 975px) {
-  .botRight {
-    position: absolute;
-    bottom: 4rem;
-    right: 3rem;
-  }
-}
