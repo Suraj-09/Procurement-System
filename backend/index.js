@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const users = require('./routes/users');
 const items = require('./routes/items');
-const orders = require('./routes/orders');
+const requests = require('./routes/requests');
 
 require("dotenv").config();
 
@@ -22,7 +22,7 @@ connection.once("open", () => {
 
 app.use("/api/users", users);
 app.use("/api/items", items);
-app.use("/api/orders", orders);
+app.use("/api/requests", requests);
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);
