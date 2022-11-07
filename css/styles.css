@@ -25,16 +25,30 @@ h3 {
   padding: 0;
 }
 
-h1 {
+h1,
+.AcqSys {
   font-family: "Gemunu Libre", sans-serif;
   font-size: 3rem;
+}
+
+.AcqSys {
+  font-size: 4rem;
 }
 
 h2 {
   font-family: "Times New Roman", Times, serif;
   font-size: 4rem;
   font-weight: 400;
-  margin-bottom: 3.75rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+h3 {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: normal;
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.3;
 }
 
 .comment {
@@ -290,6 +304,39 @@ i {
   }
 }
 
+/* Home */
+
+.home {
+  margin: 2rem;
+}
+
+/* Welcome */
+
+.welcome {
+  padding: 1rem;
+  border-radius: 30px;
+  border: 1px solid var(--menu-border);
+}
+
+/* Bubble */
+
+.bubble {
+  margin-top: 4rem;
+  margin-right: 3rem;
+  padding: 2rem;
+  border-radius: 30px;
+  min-width: 19.5rem;
+  width: 25%;
+  border: 1px solid var(--menu-border);
+  text-align: center;
+}
+
+@media screen and (max-width: 450px) {
+  .bubble {
+    margin-right: 0;
+  }
+}
+
 /* Forms */
 
 form {
@@ -345,4 +392,3 @@ textarea:focus {
   flex-basis: 100%;
   margin-top: 2rem;
 }
-
