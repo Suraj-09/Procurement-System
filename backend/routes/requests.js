@@ -58,7 +58,7 @@ router.route("/add").post(async (req, res) => {
 
   try {
     const dataToSave = await newRequest.save();
-    res.status(200).json("Request added!");
+    res.status(200).json(newRequest);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

@@ -55,8 +55,8 @@
                   <i class="menu__icons fa-solid fa-hand-holding fa-lg"></i
                   ><span class="item__text"> Request Item </span>
                 </a>
-              <!-- </li>
-              <li class="menu__item">
+              </li>
+              <!-- <li class="menu__item">
                 <a class="link--toYellow" href="#">
                   <i class="menu__icons fa-regular fa-square-plus fa-lg"></i
                   ><span class="item__text"> Add Feature </span>
@@ -66,80 +66,29 @@
           </section>
 
           <section class="right">
-            <header><h2>Request Item</h2></header>
-            <form action="" method="">
-              <div class="form-group request">
-                <label for="item">Item requested</label>
-                <input
-                  type="text"
-                  id="item"
-                  list="items"
-                  autofocus
-                  autocomplete="off"
-                  name="item"
-                />
-                <!-- <datalist id="items">
-                  <option>Microsoft Office 365</option>
-                  <option>Visual Studio Code</option>
-                  <option>Adobe Photoshop</option>
-                  <option>Google Chrome</option>
-                </datalist> -->
+            <section class="home">
+              <div class="welcome">
+                <header>
+                  <h2>Quotations</span></h2>
+                </header>
+                <h3 id="item-qty">
+                </h3>
               </div>
+              <div id="quotations_list" class="container flex">
 
-              <div class="form-group">
-                <label for="quantity"
-                  >Quantity <span class="comment"></span>
-                </label>
-                <input
-                  type="number"
-                  id="quantity"
-                  min="0"
-                  step="any"
-                  required
-                  name="quantity"
-                />
               </div>
-
-              <div class="form-group form-group--TA">
-                <label for="reason">Reason for request</label>
-                <textarea
-                  id="someText"
-                  cols="30"
-                  rows="7"
-                  name="reason"
-                ></textarea>
-              </div>
-
-              <div class="form-group">
-                <label for="supervisorName"
-                  >Supervisor's name
-                  <span class="comment"
-                    >(Approval may prove mandatory)</span
-                  ></label
-                >
-                <input
-                  type="text"
-                  id="supervisorName"
-                  minlength="3"
-                  maxlength="20"
-                  required
-                  name="name"
-                />
-              </div>
-
+              
               <div class="form__buttons">
-                <button id="clearRequest" class="btn btn--form" type="reset">Clear</button>
-                <button id="submitRequest" class="btn btn--form" type="submit">
-                  Submit Request
-                </button>
+                <button id="cancel" class="btn btn--form" type="reset">Cancel</button>
+                <button id="confirm" class="btn btn--form" type="submit">Confirm</button>
               </div>
-            </form>
+            </section>
           </section>
         </div>
       </section>
     </main>
     <script src="/js/main.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/js/request-item.js"></script>
+    <script src="/js/request-results.js"></script>
   </body>
 </html>
