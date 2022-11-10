@@ -20,14 +20,14 @@ router.route("/:id").get(async (req, res) => {
   }
 });
 
-// router.route("/:email").get(async (req, res) => {
-//   try {
-//     const user = await userModel.find({email:req.params.email});
-//     res.json(user);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
+router.route("/email/:email").get(async (req, res) => {
+  try {
+    const user = await userModel.find({email:req.params.email});
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 router.route("/add").post(async (req, res) => {
   const name = req.body.name;
