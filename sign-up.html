@@ -13,8 +13,17 @@
     <main>
       <form>
         <h2>Create new account</h2>
-        <div class="form-group">
+        <div class="form-group" style="width:100%;">
             <form id="form1">
+
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Name"
+            autofocus
+            required
+          />
           <input
             type="email"
             name="email"
@@ -25,20 +34,34 @@
           />
 
           <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-          required
-        />
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
 
-        <input
-        type="password"
-        name="password-repeat"
-        id="password2"
-        placeholder="Repeat Password"
-        required
-      />
+          <input
+            type="password"
+            name="password-repeat"
+            id="password2"
+            placeholder="Repeat Password"
+            required
+          />
+
+          <input
+            type="text"
+            name="organization"
+            id="organization_name"
+            placeholder="Organization Name"
+            autofocus
+            required
+          />
+
+          <div class="form-group">
+          <input id="user_type" type="checkbox" name="Supervisor" />
+            <label for="supervisor">Are you a Supervisor?</label>
+          </div>
 
     </form>
       <button type="submit" form="form1" id="SignUp" value="SignUp">Sign Up</button>

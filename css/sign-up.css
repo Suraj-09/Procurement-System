@@ -19,12 +19,14 @@ form {
   text-align: center;
   border: 1px solid #ffc90e;
   padding: 1rem 2rem;
-  border-radius: 35px;
+  border-radius: 55px;
 }
 
+input[type="text"],
 input[type="email"],
 input[type="password"],
-input[type="password"] {
+input[type="text"]
+{
   margin: auto;
   border: 1px solid lightgrey;
   border-radius: 5px;
@@ -34,6 +36,7 @@ input[type="password"] {
   transition: border-color 0.5s, box-shadow 0.5s;
 }
 
+input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
   outline: 0;
