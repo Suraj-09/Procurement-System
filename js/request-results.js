@@ -80,6 +80,7 @@ axios
 
 let btnConfirm = document.getElementById("confirm");
 let btnCancel = document.getElementById("cancel");
+const user_type = sessionStorage.getItem("user_type");
 
 btnCancel.addEventListener("click", () => {
   axios
@@ -99,7 +100,7 @@ btnConfirm.addEventListener("click", () => {
   const quotation_chosen = quotations_list[0];
   const url_update = "http://localhost:5000/api/requests/update/" + request_id;
 
-  if (quotation_chosen.total_cost <= 5000) {
+  if (quotation_chosen.total_cost <= 5000 || user_type === "supervisor") {
     axios
       .patch(url_update, { order: quotation_chosen })
       .then((response) => {
@@ -120,8 +121,26 @@ btnConfirm.addEventListener("click", () => {
 
     window.location = "http://127.0.0.1:5500/index.html";
   } else {
-    alert("Need supervisor's approval for orders over 5000$")
+    alert("Request will be sent to supervisor");
+    axios
+      .patch(url_update, { order: quotation_chosen })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axios
+      .patch(url_update, { request_status: "Pending" })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    window.location = "http://127.0.0.1:5500/index.html";
   }
   event.preventDefault();
 });
-

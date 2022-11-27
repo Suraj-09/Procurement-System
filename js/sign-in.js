@@ -10,9 +10,7 @@ btnSignIn.addEventListener("click", () => {
     .get(url)
     .then((response) => {
       const user = response.data[0];
-      console.log(user);
       const query_pass = user.password;
-      console.log(query_pass);
       if (password === query_pass) {
         console.log("successful");
         sessionStorage.setItem("user_id", user._id);

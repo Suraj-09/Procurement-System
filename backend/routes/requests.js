@@ -20,6 +20,24 @@ router.route("/:id").get(async (req, res) => {
   }
 });
 
+router.route("/user/:user_id").get(async (req, res) => {
+  try {
+    const request = await requestModel.find({ user_id: req.params.user_id });
+    res.json(request);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.route("/org_name/:org_name").get(async (req, res) => {
+  try {
+    const request = await requestModel.find({ organization_name: req.params.org_name });
+    res.json(request);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.route("/update/:id").patch(async (req, res) => {
   try {
     const id = req.params.id;

@@ -43,3 +43,24 @@ btnSubmitRequest.addEventListener("click", () => {
 
   event.preventDefault();
 });
+
+let selectSupervisor = document.getElementById("selectSupervisor");
+let org_name = sessionStorage.getItem("org_name");
+axios
+  .get("http://localhost:5000/api/users/supervisor/" + org_name)
+  .then((response) => {
+    const supervisors = response.data
+    for (var i = 0; i < supervisors.length; i++) {
+      let supervisor = supervisors[i].name;
+      let el = document.createElement("option");
+      el.textContent = supervisor;
+      el.value = supervisor;
+      selectSupervisor.appendChild(el);
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+
+
