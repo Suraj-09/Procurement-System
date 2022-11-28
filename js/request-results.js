@@ -96,7 +96,6 @@ btnCancel.addEventListener("click", () => {
 });
 
 btnConfirm.addEventListener("click", () => {
-  console.log(quotations_list);
   const quotation_chosen = quotations_list[0];
   const url_update = "http://localhost:5000/api/requests/update/" + request_id;
 
@@ -121,26 +120,43 @@ btnConfirm.addEventListener("click", () => {
 
     window.location = "http://127.0.0.1:5500/index.html";
   } else {
-    alert("Request will be sent to supervisor");
-    axios
-      .patch(url_update, { order: quotation_chosen })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (quotations_list.length >= 2) {
+      console.log(quotations_list.length);
+      alert("Request will be sent to supervisor");
+      axios
+        .patch(url_update, { order: quotation_chosen })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
-    axios
-      .patch(url_update, { request_status: "Pending" })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      axios
+        .patch(url_update, { request_status: "Pending" })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
-    window.location = "http://127.0.0.1:5500/index.html";
+      window.location = "http://127.0.0.1:5500/index.html";
+    } else {
+      alert(
+        "Multiple quotations are necessary for orders over 5000$. The request will be cancelled!"
+      );
+      axios
+        .patch(url_update, { request_status: "Cancelled" })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      window.location = "http://127.0.0.1:5500/index.html";
+    }
   }
   event.preventDefault();
 });
