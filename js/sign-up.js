@@ -6,7 +6,7 @@ btnSignUp.addEventListener("click", () => {
   const password = document.getElementById("password").value;
   const password2 = document.getElementById("password2").value;
   const organization = document.getElementById("organization_name").value;
-  const user_type = document.getElementById("user_type").value;
+  const user_type = document.getElementById("user_type");
 
   // check if passwords match
   if (password2 != password) {

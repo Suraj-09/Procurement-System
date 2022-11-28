@@ -5,7 +5,8 @@ let user_id = sessionStorage.getItem("user_id");
 
 // if user is a supervisor, they can see entire org's history
 // if user is an employee, they can see their requests
-let url_ext = user_type === "supervisor" ? "org_name/" + org_name : "user/" + user_id;
+let url_ext =
+  user_type === "supervisor" ? "org_name/" + org_name : "user/" + user_id;
 
 function generateTableHead(table, data) {
   let thead = table.createTHead();
@@ -28,17 +29,17 @@ function generateTable(table, data) {
     }
 
     if (user_type === "supervisor" && element["status"] === "Pending") {
-      let rejectBtncell = row.insertCell();
+      let rejectBtnCell = row.insertCell();
       var btnReject = document.createElement("input");
       btnReject.type = "button";
       btnReject.id = "btnReject";
       btnReject.className = "btn";
       btnReject.value = "Reject";
-      btnReject.addEventListener("click", () => {
-        let cur_row = btnReject.closest("tr");
+      btnReject.addEventListener("click", (event) => {
+        let cur_row = event.target.closest("tr");
         let request_id = cur_row.cells[1].textContent;
-        const url_update =
-          "http://localhost:5000/api/requests/update/" + request_id;
+        const url_update = "http://localhost:5000/api/requests/update/" + request_id;
+
         axios
           .patch(url_update, { request_status: "Rejected" })
           .then((response) => {
@@ -49,19 +50,19 @@ function generateTable(table, data) {
           });
         location.reload();
       });
-      rejectBtncell.appendChild(btnReject);
+      rejectBtnCell.appendChild(btnReject);
 
-      let ApproveBtncell = row.insertCell();
+      let ApproveBtnCell = row.insertCell();
       var btnApprove = document.createElement("input");
       btnApprove.type = "button";
       btnApprove.id = "btnApprove";
       btnApprove.className = "btn";
       btnApprove.value = "Approve";
-      btnApprove.addEventListener("click", () => {
-        let cur_row = btnApprove.closest("tr");
+      btnApprove.addEventListener("click", (event) => {
+        let cur_row = event.target.closest("tr");
         let request_id = cur_row.cells[1].textContent;
-        const url_update =
-          "http://localhost:5000/api/requests/update/" + request_id;
+        const url_update = "http://localhost:5000/api/requests/update/" + request_id;
+
         axios
           .patch(url_update, { request_status: "Ordered" })
           .then((response) => {
@@ -70,10 +71,9 @@ function generateTable(table, data) {
           .catch((error) => {
             console.log(error);
           });
-
         location.reload();
       });
-      ApproveBtncell.appendChild(btnApprove);
+      ApproveBtnCell.appendChild(btnApprove);
     }
   }
 }
