@@ -80,6 +80,7 @@ axios
 
 let btnConfirm = document.getElementById("confirm");
 let btnCancel = document.getElementById("cancel");
+const user_type = sessionStorage.getItem("user_type");
 
 btnCancel.addEventListener("click", () => {
   axios
@@ -95,11 +96,10 @@ btnCancel.addEventListener("click", () => {
 });
 
 btnConfirm.addEventListener("click", () => {
-  console.log(quotations_list);
   const quotation_chosen = quotations_list[0];
   const url_update = "http://localhost:5000/api/requests/update/" + request_id;
 
-  if (quotation_chosen.total_cost <= 5000) {
+  if (quotation_chosen.total_cost <= 5000 || user_type === "supervisor") {
     axios
       .patch(url_update, { order: quotation_chosen })
       .then((response) => {
@@ -120,52 +120,43 @@ btnConfirm.addEventListener("click", () => {
 
     window.location = "http://127.0.0.1:5500/index.html";
   } else {
-    alert("Need supervisor's approval for orders over 5000$")
+    if (quotations_list.length >= 2) {
+      console.log(quotations_list.length);
+      alert("Request will be sent to supervisor");
+      axios
+        .patch(url_update, { order: quotation_chosen })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      axios
+        .patch(url_update, { request_status: "Pending" })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      window.location = "http://127.0.0.1:5500/index.html";
+    } else {
+      alert(
+        "Multiple quotations are necessary for orders over 5000$. The request will be cancelled!"
+      );
+      axios
+        .patch(url_update, { request_status: "Cancelled" })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      window.location = "http://127.0.0.1:5500/index.html";
+    }
   }
-  //   console.log(request_id);
-
-  //   const item = document.getElementById("item").value;
-  //   const quantity = document.getElementById("quantity").value;
-
-  //   let payload = {
-  //     user_id: sessionStorage.getItem("user_id"),
-  //     organization_name: sessionStorage.getItem("org_name"),
-  //     item_name: item,
-  //     quantity: quantity,
-  //     quotations: null,
-  //     order: null,
-  //     request_status: "Sent",
-  //   };
-
-  //   console.log(payload);
-
-  //   axios
-  //     .post("http://localhost:5000/api/requests/add", payload)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       sessionStorage.setItem("new_request_item", item);
-  //       sessionStorage.setItem("new_request_quantity", quantity);
-  //       window.location = "http://127.0.0.1:5500/request-results.html";
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
   event.preventDefault();
 });
-
-/*
-  
-  _id 6366c5e2851d24c200aa6a6a
-  user_id "635ecf3624d1376532f9f74d"
-  organization_name "test_org"
-  item_name "Paper"
-  quantity 100000
-  
-  quotations Array
-  
-  order Object
-  request_status "Ordered"
-  createdAt 2022-11-05T20:21:54.138+00:00
-  updatedAt 2022-11-05T20:57:09.575+00:00
-  __v 0
-  */

@@ -55,13 +55,12 @@
                   <i class="menu__icons fa-solid fa-hand-holding fa-lg"></i
                   ><span class="item__text"> Request Item </span>
                 </a>
-              <!-- </li>
-              <li class="menu__item">
-                <a class="link--toYellow" href="#">
-                  <i class="menu__icons fa-regular fa-square-plus fa-lg"></i
-                  ><span class="item__text"> Add Feature </span>
-                </a>
-              </li> -->
+                <li class="menu__item">
+                  <a class="link--toYellow" href="/requests.html">
+                    <i class="menu__icons fa-regular fa-square-plus fa-lg"></i
+                    ><span class="item__text"> Requests </span>
+                  </a>
+                </li>
             </ul>
           </section>
 
@@ -70,6 +69,10 @@
             <form action="" method="">
               <div class="form-group request">
                 <label for="item">Item requested</label>
+                <select id="selectItem">
+                  <!-- <option></option> -->
+                </select>
+                <!-- <label for="item">Item requested</label>
                 <input
                   type="text"
                   id="item"
@@ -77,7 +80,7 @@
                   autofocus
                   autocomplete="off"
                   name="item"
-                />
+                /> -->
                 <!-- <datalist id="items">
                   <option>Microsoft Office 365</option>
                   <option>Visual Studio Code</option>
@@ -117,14 +120,9 @@
                     >(Approval may prove mandatory)</span
                   ></label
                 >
-                <input
-                  type="text"
-                  id="supervisorName"
-                  minlength="3"
-                  maxlength="20"
-                  required
-                  name="name"
-                />
+                <select id="selectSupervisor">
+                  <!-- <option></option> -->
+                </select>
               </div>
 
               <div class="form__buttons">

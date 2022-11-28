@@ -29,6 +29,15 @@ router.route("/email/:email").get(async (req, res) => {
   }
 });
 
+router.route("/supervisor/:organization_name").get(async (req, res) => {
+  try {
+    const user = await userModel.find({organization_name:req.params.organization_name, user_type:"supervisor"});
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.route("/add").post(async (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
@@ -46,7 +55,7 @@ router.route("/add").post(async (req, res) => {
 
   try {
     const dataToSave = await newUser.save();
-    res.status(200).json("User added!");
+    res.status(200).json(newUser);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
