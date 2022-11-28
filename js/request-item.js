@@ -44,6 +44,27 @@ btnSubmitRequest.addEventListener("click", () => {
   event.preventDefault();
 });
 
+
+// Populate item dropdown list
+let selectItem = document.getElementById("selectItem");
+axios
+  .get("http://localhost:5000/api/items")
+  .then((response) => {
+    const items = response.data.map(a => a.item_name).sort();
+    const unique_items = [...new Set(items)]
+
+    for (var i = 0; i < unique_items.length; i++) {
+      let el = document.createElement("option");
+      el.textContent = unique_items[i];
+      el.value = unique_items[i];
+      selectItem.appendChild(el);
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+// Populate supervisor dropdown list
 let selectSupervisor = document.getElementById("selectSupervisor");
 let org_name = sessionStorage.getItem("org_name");
 axios
