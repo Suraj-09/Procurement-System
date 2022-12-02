@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const requestModel = require("../models/requestModel");
 
+// getAllRequests()
 router.route("/").get(async (req, res) => {
   try {
     const requests = await requestModel.find();
@@ -11,6 +12,7 @@ router.route("/").get(async (req, res) => {
   }
 });
 
+// getRequest(String id)
 router.route("/:id").get(async (req, res) => {
   try {
     const request = await requestModel.find({ _id: req.params.id });
@@ -20,6 +22,7 @@ router.route("/:id").get(async (req, res) => {
   }
 });
 
+// getRequestByUserId(String user_id)
 router.route("/user/:user_id").get(async (req, res) => {
   try {
     const request = await requestModel.find({ user_id: req.params.user_id });
@@ -29,6 +32,7 @@ router.route("/user/:user_id").get(async (req, res) => {
   }
 });
 
+// getRequestByOrgName(String org_name)
 router.route("/org_name/:org_name").get(async (req, res) => {
   try {
     const request = await requestModel.find({ organization_name: req.params.org_name });
@@ -38,6 +42,7 @@ router.route("/org_name/:org_name").get(async (req, res) => {
   }
 });
 
+// setRequest(String id, Request request)
 router.route("/update/:id").patch(async (req, res) => {
   try {
     const id = req.params.id;
@@ -55,6 +60,7 @@ router.route("/update/:id").patch(async (req, res) => {
   }
 });
 
+// addRequest(Request request)
 router.route("/add").post(async (req, res) => {
   const user_id = req.body.user_id;
   const organization_name = req.body.organization_name;

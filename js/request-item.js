@@ -1,7 +1,7 @@
 let btnSubmitRequest = document.getElementById("submitRequest");
 
 btnSubmitRequest.addEventListener("click", () => {
-  const item = document.getElementById("item").value;
+  const item = document.getElementById("selectItem").value;
   const quantity = document.getElementById("quantity").value;
 
   let request_payload = {
