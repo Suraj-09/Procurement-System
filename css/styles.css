@@ -9,6 +9,10 @@
   --comments-primary: ##528fff;
 }
 
+html {
+  color-scheme: dark !important;
+}
+
 /* Typography */
 
 body {
