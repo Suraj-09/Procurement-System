@@ -25,6 +25,7 @@ html {
   -webkit-text-size-adjust: 100%; /* 2 */
   scroll-behavior: smooth;
   font-size: 62.5%;
+  color-scheme: dark !important;
 }
 
 /* Sections
