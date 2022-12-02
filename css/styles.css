@@ -1,12 +1,12 @@
 :root {
-  --color-primary: #c3c3c3;
-  --border-color-primary: #7f7f7f;
+  --color-primary: #3a3f41;
+  --border-color-primary: #625b51;
   --icon-primary: #ffc90e;
-  --menu-primary: #f2f2f2;
-  --menu-border: #d4d4d4;
-  --input-border-primary: #880015;
-  --input-fill-primary: #fdf3dc;
-  --comments-primary: #5650ff;
+  --menu-primary: #191b1c;
+  --menu-border: #3c4144;
+  --input-border-primary: #d60021;
+  --input-fill-primary: #342503;
+  --comments-primary: ##528fff;
 }
 
 /* Typography */
@@ -57,14 +57,12 @@ h3 {
 }
 
 .link--toYellow {
-  color: #222;
+  color: #fff;
   text-decoration: none;
-  transition: all 0.2s;
 }
 
 .link--toYellow:hover {
   color: var(--icon-primary);
-  font-weight: 600;
 }
 
 /* Nav */
@@ -165,7 +163,6 @@ i {
 }
 
 .collapsible--expanded #menu__toggler {
-  background-color: #fff;
   rotate: 90deg;
 }
 
@@ -275,8 +272,7 @@ i {
 }
 
 #clickable:hover #menu__toggler {
-  transform: scale(1.05);
-  background-color: #fff;
+  transform: scale(1.1);
 }
 
 @media screen and (min-width: 975px) {
@@ -291,6 +287,7 @@ i {
   padding-top: 0.5rem;
   padding-left: 2rem;
   position: relative; /* in order to set .botRight to absolute */
+  background: #131516;
 }
 
 .right {
