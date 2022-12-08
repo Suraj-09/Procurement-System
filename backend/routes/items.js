@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const itemModel = require("../models/itemModel");
 
+// getAllItems()
 router.route("/").get(async (req, res) => {
   try {
     const items = await itemModel.find();
@@ -11,6 +12,7 @@ router.route("/").get(async (req, res) => {
   }
 });
 
+// getItem(String item_name)
 router.route("/:item_name").get(async (req, res) => {
   try {
     const items = await itemModel.find({item_name:req.params.item_name});
@@ -20,6 +22,7 @@ router.route("/:item_name").get(async (req, res) => {
   }
 });
 
+// addItem(Item item)
 router.route("/add").post(async (req, res) => {
   const item_name = req.body.item_name;
   const supplier_name = req.body.supplier_name;
