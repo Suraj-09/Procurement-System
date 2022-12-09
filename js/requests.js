@@ -38,6 +38,7 @@ function generateTable(table, data) {
       btnReject.addEventListener("click", (event) => {
         let cur_row = event.target.closest("tr");
         let request_id = cur_row.cells[1].textContent;
+        let requester = cur_row.cells[2].textContent;
         const url_update =
           "http://localhost:5000/api/requests/update/" + request_id;
 
@@ -49,6 +50,23 @@ function generateTable(table, data) {
           .catch((error) => {
             console.log(error);
           });
+
+        let notification_payload = {
+          sender_email: sessionStorage.getItem("email"),
+          receiver_email: requester,
+          organization_name: sessionStorage.getItem("org_name"),
+          request_id: request_id,
+          message: "Request rejected",
+          read_status: false,
+        };
+
+        axios
+          .post("http://localhost:5000/api/notifications/add", notification_payload)
+          .then((response) => {})
+          .catch((error) => {
+            console.log(error);
+          });
+
         location.reload();
       });
       rejectBtnCell.appendChild(btnReject);
@@ -62,6 +80,7 @@ function generateTable(table, data) {
       btnApprove.addEventListener("click", (event) => {
         let cur_row = event.target.closest("tr");
         let request_id = cur_row.cells[1].textContent;
+        let requester = cur_row.cells[2].textContent;
         const url_update =
           "http://localhost:5000/api/requests/update/" + request_id;
 
@@ -70,6 +89,22 @@ function generateTable(table, data) {
           .then((response) => {
             console.log(response.data);
           })
+          .catch((error) => {
+            console.log(error);
+          });
+
+        let notification_payload = {
+          sender_email: sessionStorage.getItem("email"),
+          receiver_email: requester,
+          organization_name: sessionStorage.getItem("org_name"),
+          request_id: request_id,
+          message: "Request approved",
+          read_status: false,
+        };
+
+        axios
+          .post("http://localhost:5000/api/notifications/add", notification_payload)
+          .then((response) => {})
           .catch((error) => {
             console.log(error);
           });
@@ -87,12 +122,12 @@ axios
 
     for (element of response.data) {
       console.log(element.hasOwnProperty("name"));
-      let name = element.hasOwnProperty("name") ? element.name : "-";
+      let email = element.hasOwnProperty("email") ? element.email : "-";
       let date = new Date(element.createdAt);
       let request = {
         datetime: date.toLocaleString(),
         request_id: element._id,
-        requester: name,
+        requester: email,
         item_name: element.item_name,
         quantity: element.quantity,
         total_cost: element.order ? element.order.total_cost : "-",

@@ -3,11 +3,6 @@ window.onload = function toggleSupervisorSelect() {
   const supervisorDiv = document.getElementById("supervisor_select");
 
   supervisorDiv.style.display = (user_type === "employee") ? "block" : "none";
-  // if (user_type == "employee") {
-  //   supervisorDiv.style.display = "block";
-  // } else {
-  //   supervisorDiv.style.display = "none";
-  // }
 }
 
 // Populate item dropdown list
@@ -37,7 +32,7 @@ axios
   .then((response) => {
     const supervisors = response.data
     for (var i = 0; i < supervisors.length; i++) {
-      let supervisor = supervisors[i].name;
+      let supervisor = supervisors[i].email;
       let el = document.createElement("option");
       el.textContent = supervisor;
       el.value = supervisor;
@@ -58,14 +53,17 @@ btnSubmitRequest.addEventListener("click", () => {
   const reason = document.getElementById("reason").value;
 
   const user_type = sessionStorage.getItem("user_type");
-  let supervisor_name = document.getElementById("selectSupervisor").value;
-  supervisor_name = (user_type === "employee") ? supervisor_name : sessionStorage.getItem("name");
+  let supervisor_email = document.getElementById("selectSupervisor").value;
+  supervisor_email = (user_type === "employee") ? supervisor_email : sessionStorage.getItem("email");
+
+  sessionStorage.setItem("supervisor_email", supervisor_email);
+  sessionStorage.setItem("reason", reason);
 
   let request_payload = {
     user_id: sessionStorage.getItem("user_id"),
-    name: sessionStorage.getItem("name"),
+    email: sessionStorage.getItem("email"),
     organization_name: sessionStorage.getItem("org_name"),
-    supervisor_name: supervisor_name,
+    supervisor_email: supervisor_email,
     item_name: item,
     quantity: quantity,
     reason: reason,

@@ -7,7 +7,7 @@ const requestSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    name: {
+    email: {
       type: String,
       required: true,
       trim: true,
@@ -16,7 +16,7 @@ const requestSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    supervisor_name: {
+    supervisor_email: {
       type: String,
       required: true,
     },
