@@ -141,6 +141,24 @@ btnConfirm.addEventListener("click", () => {
           console.log(error);
         });
 
+      let notification_payload = {
+        sender_email: sessionStorage.getItem("email"),
+        receiver_email: sessionStorage.getItem("supervisor_email"),
+        organization_name: sessionStorage.getItem("org_name"),
+        request_id: request_id,
+        message: "New request was made. Reason: " + sessionStorage.getItem("reason"),
+        read_status: false,
+      };
+
+      axios
+        .post("http://localhost:5000/api/notifications/add", notification_payload)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
       window.location = "http://127.0.0.1:5500/index.html";
     } else {
       alert(

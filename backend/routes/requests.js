@@ -63,18 +63,24 @@ router.route("/update/:id").patch(async (req, res) => {
 // addRequest(Request request)
 router.route("/add").post(async (req, res) => {
   const user_id = req.body.user_id;
+  const email = req.body.email;
   const organization_name = req.body.organization_name;
+  const supervisor_email = req.body.supervisor_email;
   const item_name = req.body.item_name;
   const quantity = req.body.quantity;
+  const reason = req.body.reason;
   const quotations = null;
   const order = null;
   const request_status = "Sent";
 
   const newRequest = new requestModel({
     user_id,
+    email,
     organization_name,
+    supervisor_email,
     item_name,
     quantity,
+    reason,
     quotations,
     order,
     request_status,
