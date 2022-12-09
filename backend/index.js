@@ -7,6 +7,7 @@ const items = require("./routes/items");
 const requests = require("./routes/requests");
 
 require("dotenv").config();
+mongoose.set('strictQuery', true);
 
 const app = express();
 const port = process.env.PORT || 5000;

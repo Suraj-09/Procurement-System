@@ -38,7 +38,8 @@ function generateTable(table, data) {
       btnReject.addEventListener("click", (event) => {
         let cur_row = event.target.closest("tr");
         let request_id = cur_row.cells[1].textContent;
-        const url_update = "http://localhost:5000/api/requests/update/" + request_id;
+        const url_update =
+          "http://localhost:5000/api/requests/update/" + request_id;
 
         axios
           .patch(url_update, { request_status: "Rejected" })
@@ -61,7 +62,8 @@ function generateTable(table, data) {
       btnApprove.addEventListener("click", (event) => {
         let cur_row = event.target.closest("tr");
         let request_id = cur_row.cells[1].textContent;
-        const url_update = "http://localhost:5000/api/requests/update/" + request_id;
+        const url_update =
+          "http://localhost:5000/api/requests/update/" + request_id;
 
         axios
           .patch(url_update, { request_status: "Ordered" })
@@ -84,10 +86,13 @@ axios
     let requests_array = [];
 
     for (element of response.data) {
+      console.log(element.hasOwnProperty("name"));
+      let name = element.hasOwnProperty("name") ? element.name : "-";
       let date = new Date(element.createdAt);
       let request = {
         datetime: date.toLocaleString(),
         request_id: element._id,
+        requester: name,
         item_name: element.item_name,
         quantity: element.quantity,
         total_cost: element.order ? element.order.total_cost : "-",
