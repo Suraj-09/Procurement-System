@@ -25,7 +25,7 @@ router.route("/:id").get(async (req, res) => {
 // getRequestByUserId(String user_id)
 router.route("/user/:user_id").get(async (req, res) => {
   try {
-    const request = await requestModel.find({ user_id: req.params.user_id });
+    const request = await requestModel.find({ user_id: req.params.user_id }).where("request_status").ne("Sent");
     res.json(request);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -35,7 +35,7 @@ router.route("/user/:user_id").get(async (req, res) => {
 // getRequestByOrgName(String org_name)
 router.route("/org_name/:org_name").get(async (req, res) => {
   try {
-    const request = await requestModel.find({ organization_name: req.params.org_name });
+    const request = await requestModel.find({ organization_name: req.params.org_name }).where("request_status").ne("Sent");;
     res.json(request);
   } catch (error) {
     res.status(500).json({ message: error.message });

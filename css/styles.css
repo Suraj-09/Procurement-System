@@ -393,10 +393,10 @@ textarea:focus {
 }
 
 /* table */
-table, th, td {
+.simple-table, th, td {
   margin-top: 2%;
   margin-bottom: 2%;
-  /* border: 1px solid; */
+  border: 1px solid;
   border-collapse:collapse
 }
 

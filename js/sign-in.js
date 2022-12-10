@@ -19,6 +19,8 @@ btnSignIn.addEventListener("click", () => {
         sessionStorage.setItem("user_type", user.user_type);
         sessionStorage.setItem("org_name", user.organization_name);
         window.location = "http://127.0.0.1:5500/index.html";
+      } else {
+        alert("Wrong email or password");
       }
     })
     .catch((error) => {

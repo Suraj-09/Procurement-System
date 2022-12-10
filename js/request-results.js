@@ -45,6 +45,18 @@ function createList(items, parent) {
   });
 }
 
+let table = document.querySelector("table");
+function generateTable(table, data) {
+  for (let element of data) {
+    let row = table.insertRow();
+    for (key in element) {
+      let cell = row.insertCell();
+      cell.style.border = "1px solid";
+      let text = document.createTextNode(element[key]);
+      cell.appendChild(text);
+    }
+  }
+}
 // get quotations
 axios
   .get("http://localhost:5000/api/items/" + item)
@@ -78,7 +90,7 @@ axios
 
     let list = document.getElementById("quotations_list");
 
-    createList(quotations_list, list);
+    generateTable(table, quotations_list);
   })
   .catch((error) => console.error(error));
 
