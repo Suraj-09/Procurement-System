@@ -45,18 +45,22 @@ function createList(items, parent) {
   });
 }
 
+// get quotations
 axios
   .get("http://localhost:5000/api/items/" + item)
   .then((response) => {
     const items = response.data;
 
     console.log(items);
+
+    // 
     document.getElementById("item-qty").innerText =
       "item: " + item + " | quantity: " + quantity;
 
+    // creating a list of the quoations
     items.forEach((x, i) => {
       const total_cost = quantity * x.price;
-      const quotation = new Quotation(x.supplier_name, total_cost);
+      const quotation = new Quotation(x.supplier_name, total_cost.toFixed(2));
       console.log(quotation.toString());
       quotations_list.push(quotation);
     });
@@ -78,10 +82,13 @@ axios
   })
   .catch((error) => console.error(error));
 
+
+
 let btnConfirm = document.getElementById("confirm");
 let btnCancel = document.getElementById("cancel");
 const user_type = sessionStorage.getItem("user_type");
 
+// cancel button
 btnCancel.addEventListener("click", () => {
   axios
     .patch(url_update, { request_status: "Cancelled" })
@@ -95,6 +102,7 @@ btnCancel.addEventListener("click", () => {
   window.location = "http://127.0.0.1:5500/index.html";
 });
 
+// confirm button
 btnConfirm.addEventListener("click", () => {
   const quotation_chosen = quotations_list[0];
   const url_update = "http://localhost:5000/api/requests/update/" + request_id;

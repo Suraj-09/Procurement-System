@@ -43,8 +43,6 @@ axios
     console.log(error);
   });
 
-
-
 let btnSubmitRequest = document.getElementById("submitRequest");
 
 btnSubmitRequest.addEventListener("click", () => {

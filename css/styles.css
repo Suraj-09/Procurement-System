@@ -350,14 +350,12 @@ label {
   margin-bottom: 0.2rem;
 }
 
-input,
-textarea {
+ input,
+ textarea {
   /*applies only to input of attribute text and email*/
-  border: 2px solid var(--input-border-primary);
   border-radius: 5px;
   padding: 0.5rem; /* padding within the input box */
   transition: border-color 0.15s, box-shadow 0.15s; /* spmoothens transition over 0.15s for property changes */
-  background-color: var(--input-fill-primary);
 }
 
 input[type="number"] {
@@ -392,4 +390,17 @@ textarea:focus {
 .form__buttons {
   flex-basis: 100%;
   margin-top: 2rem;
+}
+
+/* table */
+table, th, td {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  /* border: 1px solid; */
+  border-collapse:collapse
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
 }
