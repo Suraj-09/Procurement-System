@@ -9,6 +9,7 @@ function generateTableHead(table, data) {
   let row = thead.insertRow();
   for (let key of data) {
     let th = document.createElement("th");
+    th.style.border = "1px solid";
     let text = document.createTextNode(key);
     th.appendChild(text);
     row.appendChild(th);
@@ -20,6 +21,7 @@ function generateTable(table, data) {
     let row = table.insertRow();
     for (key in element) {
       let cell = row.insertCell();
+      cell.style.border = "1px solid";
       let text = document.createTextNode(element[key]);
       cell.appendChild(text);
     }

@@ -13,6 +13,7 @@ function generateTableHead(table, data) {
   let row = thead.insertRow();
   for (let key of data) {
     let th = document.createElement("th");
+    th.style.border = "1px solid";
     let text = document.createTextNode(key);
     th.appendChild(text);
     row.appendChild(th);
@@ -24,17 +25,20 @@ function generateTable(table, data) {
     let row = table.insertRow();
     for (key in element) {
       let cell = row.insertCell();
+      cell.style.border = "1px solid";
       let text = document.createTextNode(element[key]);
       cell.appendChild(text);
     }
 
     if (user_type === "supervisor" && element["status"] === "Pending") {
       let rejectBtnCell = row.insertCell();
+      rejectBtnCell.style.border = "none";
       var btnReject = document.createElement("input");
       btnReject.type = "button";
       btnReject.id = "btnReject";
       btnReject.className = "btn";
       btnReject.value = "Reject";
+      
       btnReject.addEventListener("click", (event) => {
         let cur_row = event.target.closest("tr");
         let request_id = cur_row.cells[1].textContent;
@@ -61,7 +65,10 @@ function generateTable(table, data) {
         };
 
         axios
-          .post("http://localhost:5000/api/notifications/add", notification_payload)
+          .post(
+            "http://localhost:5000/api/notifications/add",
+            notification_payload
+          )
           .then((response) => {})
           .catch((error) => {
             console.log(error);
@@ -72,6 +79,7 @@ function generateTable(table, data) {
       rejectBtnCell.appendChild(btnReject);
 
       let ApproveBtnCell = row.insertCell();
+      ApproveBtnCell.style.border = "none";
       var btnApprove = document.createElement("input");
       btnApprove.type = "button";
       btnApprove.id = "btnApprove";
@@ -103,7 +111,10 @@ function generateTable(table, data) {
         };
 
         axios
-          .post("http://localhost:5000/api/notifications/add", notification_payload)
+          .post(
+            "http://localhost:5000/api/notifications/add",
+            notification_payload
+          )
           .then((response) => {})
           .catch((error) => {
             console.log(error);
@@ -121,7 +132,6 @@ axios
     let requests_array = [];
 
     for (element of response.data) {
-      console.log(element.hasOwnProperty("name"));
       let email = element.hasOwnProperty("email") ? element.email : "-";
       let date = new Date(element.createdAt);
       let request = {
@@ -130,7 +140,9 @@ axios
         requester: email,
         item_name: element.item_name,
         quantity: element.quantity,
-        total_cost: element.order ? element.order.total_cost : "-",
+        total_cost: element.order
+          ? "$" + element.order.total_cost.toFixed(2)
+          : "-",
         status: element.request_status,
       };
 

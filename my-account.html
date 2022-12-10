@@ -64,7 +64,10 @@
               </li>
               <li class="menu__item">
                 <a class="link--toYellow" href="/notifications.html">
-                  <i id="icon_notif" class="menu__icons fa-regular fa-bell fa-lg"></i
+                  <i
+                    id="icon_notif"
+                    class="menu__icons fa-regular fa-bell fa-lg"
+                  ></i
                   ><span class="item__text"> Notifications </span>
                 </a>
               </li>
@@ -75,12 +78,31 @@
             <section class="home">
               <div class="welcome">
                 <header>
-                  <h2>- Requests -</h2>
+                  <h2>- My Account -</h2>
                 </header>
               </div>
               <div class="container flex">
-                <table class="table">
-                  <!-- generate table using javascript -->
+                <table>
+                  <tr>
+                    <th>Id:</th>
+                    <td id="id"></td>
+                  </tr>
+                  <tr>
+                    <th>Name:</th>
+                    <td id="name"></td>
+                  </tr>
+                  <tr>
+                    <th>Email:</th>
+                    <td id="email"></td>
+                  </tr>
+                  <tr>
+                    <th>User type:</th>
+                    <td id="user_type"></td>
+                  </tr>
+                  <tr>
+                    <th>Organization:</th>
+                    <td id="org_name"></td>
+                  </tr>
                 </table>
               </div>
             </section>
@@ -89,8 +111,7 @@
       </section>
     </main>
     <script src="/js/main.js"></script>
-    <script src="/js/notification_status.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/js/requests.js"></script>
+    <script src="/js/my-account.js"></script>
   </body>
 </html>
