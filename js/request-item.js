@@ -1,10 +1,3 @@
-window.onload = function toggleSupervisorSelect() {
-  const user_type = sessionStorage.getItem("user_type");
-  const supervisorDiv = document.getElementById("supervisor_select");
-
-  supervisorDiv.style.display = user_type === "employee" ? "block" : "none";
-};
-
 // Populate item dropdown list
 let selectItem = document.getElementById("selectItem");
 axios
