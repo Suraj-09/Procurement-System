@@ -1,4 +1,9 @@
+let btnBack = document.getElementById("back");
 let btnSignUp = document.getElementById("SignUp");
+
+btnBack.addEventListener("click", () => {
+  window.location = "/sign-in.html";
+});
 
 btnSignUp.addEventListener("click", () => {
   const name = document.getElementById("name").value;
@@ -40,7 +45,10 @@ btnSignUp.addEventListener("click", () => {
               sessionStorage.setItem("name", response.data.name);
               sessionStorage.setItem("email", response.data.email);
               sessionStorage.setItem("user_type", response.data.user_type);
-              sessionStorage.setItem("org_name", response.data.organization_name);
+              sessionStorage.setItem(
+                "org_name",
+                response.data.organization_name
+              );
               window.location = "/";
               console.log("Signed up Successfully");
             })

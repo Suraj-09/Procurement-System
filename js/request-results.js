@@ -45,18 +45,34 @@ function createList(items, parent) {
   });
 }
 
+let table = document.querySelector("table");
+function generateTable(table, data) {
+  for (let element of data) {
+    let row = table.insertRow();
+    for (key in element) {
+      let cell = row.insertCell();
+      cell.style.border = "1px solid";
+      let text = document.createTextNode(element[key]);
+      cell.appendChild(text);
+    }
+  }
+}
+// get quotations
 axios
   .get("http://localhost:5000/api/items/" + item)
   .then((response) => {
     const items = response.data;
 
     console.log(items);
+
+    // 
     document.getElementById("item-qty").innerText =
       "item: " + item + " | quantity: " + quantity;
 
+    // creating a list of the quoations
     items.forEach((x, i) => {
       const total_cost = quantity * x.price;
-      const quotation = new Quotation(x.supplier_name, total_cost);
+      const quotation = new Quotation(x.supplier_name, total_cost.toFixed(2));
       console.log(quotation.toString());
       quotations_list.push(quotation);
     });
@@ -74,14 +90,17 @@ axios
 
     let list = document.getElementById("quotations_list");
 
-    createList(quotations_list, list);
+    generateTable(table, quotations_list);
   })
   .catch((error) => console.error(error));
+
+
 
 let btnConfirm = document.getElementById("confirm");
 let btnCancel = document.getElementById("cancel");
 const user_type = sessionStorage.getItem("user_type");
 
+// cancel button
 btnCancel.addEventListener("click", () => {
   axios
     .patch(url_update, { request_status: "Cancelled" })
@@ -95,6 +114,7 @@ btnCancel.addEventListener("click", () => {
   window.location = "http://127.0.0.1:5500/index.html";
 });
 
+// confirm button
 btnConfirm.addEventListener("click", () => {
   const quotation_chosen = quotations_list[0];
   const url_update = "http://localhost:5000/api/requests/update/" + request_id;
@@ -134,6 +154,24 @@ btnConfirm.addEventListener("click", () => {
 
       axios
         .patch(url_update, { request_status: "Pending" })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      let notification_payload = {
+        sender_email: sessionStorage.getItem("email"),
+        receiver_email: sessionStorage.getItem("supervisor_email"),
+        organization_name: sessionStorage.getItem("org_name"),
+        request_id: request_id,
+        message: "New request was made. Reason: " + sessionStorage.getItem("reason"),
+        read_status: false,
+      };
+
+      axios
+        .post("http://localhost:5000/api/notifications/add", notification_payload)
         .then((response) => {
           console.log(response.data);
         })

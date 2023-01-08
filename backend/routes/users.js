@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const userModel = require("../models/userModel");
 
+// getAllUsers()
 router.route("/").get(async (req, res) => {
   try {
     const users = await userModel.find();
@@ -11,6 +12,7 @@ router.route("/").get(async (req, res) => {
   }
 });
 
+// getUser(String user_id)
 router.route("/:id").get(async (req, res) => {
   try {
     const user = await userModel.find({_id:req.params.id});
@@ -20,6 +22,7 @@ router.route("/:id").get(async (req, res) => {
   }
 });
 
+// getUserByEmail(String email)
 router.route("/email/:email").get(async (req, res) => {
   try {
     const user = await userModel.find({email:req.params.email});
@@ -29,6 +32,7 @@ router.route("/email/:email").get(async (req, res) => {
   }
 });
 
+// getSupervisor(String org_name)
 router.route("/supervisor/:organization_name").get(async (req, res) => {
   try {
     const user = await userModel.find({organization_name:req.params.organization_name, user_type:"supervisor"});
@@ -38,6 +42,7 @@ router.route("/supervisor/:organization_name").get(async (req, res) => {
   }
 });
 
+// addUser(User user)
 router.route("/add").post(async (req, res) => {
   const name = req.body.name;
   const email = req.body.email;

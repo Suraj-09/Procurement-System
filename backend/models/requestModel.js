@@ -7,7 +7,16 @@ const requestSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     organization_name: {
+      type: String,
+      required: true,
+    },
+    supervisor_email: {
       type: String,
       required: true,
     },
@@ -19,6 +28,9 @@ const requestSchema = new mongoose.Schema(
     quantity: {
       type: Number,
       required: true,
+    },
+    reason: {
+      type: String,
     },
     quotations: {
       type: [quotationModel.schema],

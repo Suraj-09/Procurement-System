@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const requestModel = require("../models/requestModel");
 
+// getAllRequests()
 router.route("/").get(async (req, res) => {
   try {
     const requests = await requestModel.find();
@@ -11,6 +12,7 @@ router.route("/").get(async (req, res) => {
   }
 });
 
+// getRequest(String id)
 router.route("/:id").get(async (req, res) => {
   try {
     const request = await requestModel.find({ _id: req.params.id });
@@ -20,24 +22,27 @@ router.route("/:id").get(async (req, res) => {
   }
 });
 
+// getRequestByUserId(String user_id)
 router.route("/user/:user_id").get(async (req, res) => {
   try {
-    const request = await requestModel.find({ user_id: req.params.user_id });
+    const request = await requestModel.find({ user_id: req.params.user_id }).where("request_status").ne("Sent");
     res.json(request);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
+// getRequestByOrgName(String org_name)
 router.route("/org_name/:org_name").get(async (req, res) => {
   try {
-    const request = await requestModel.find({ organization_name: req.params.org_name });
+    const request = await requestModel.find({ organization_name: req.params.org_name }).where("request_status").ne("Sent");;
     res.json(request);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
+// setRequest(String id, Request request)
 router.route("/update/:id").patch(async (req, res) => {
   try {
     const id = req.params.id;
@@ -55,20 +60,27 @@ router.route("/update/:id").patch(async (req, res) => {
   }
 });
 
+// addRequest(Request request)
 router.route("/add").post(async (req, res) => {
   const user_id = req.body.user_id;
+  const email = req.body.email;
   const organization_name = req.body.organization_name;
+  const supervisor_email = req.body.supervisor_email;
   const item_name = req.body.item_name;
   const quantity = req.body.quantity;
+  const reason = req.body.reason;
   const quotations = null;
   const order = null;
   const request_status = "Sent";
 
   const newRequest = new requestModel({
     user_id,
+    email,
     organization_name,
+    supervisor_email,
     item_name,
     quantity,
+    reason,
     quotations,
     order,
     request_status,
