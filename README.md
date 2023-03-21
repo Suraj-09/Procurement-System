@@ -1,10 +1,10 @@
-Procurement-System (web app)
+# Procurement-System (web app)
 
 Tech stack: HTML CSS JS Node.js Express & MongoDB
 
 Employees can place requests for products. If the requested product's price falls short of $5000, the request is sent to the provider/manufacturer of the product requested. If it is > $5000, their supervisor is automatically notified to approve/deny the request of his employee. Should the request be approved, the request is then sent to the provider/manufacturer of the product requested.
 
-Installation Guide
+# Installation Guide
 BACK-END:
 
 Software: Node.js
@@ -23,14 +23,14 @@ From VSCode, open project folder and hit "Go Live" in the bottom left corner of 
 
 Development server should bootup on default browser.
 
-Features
+# Features
 Sign-in/Sign-Up pages
 Home page + retractable menu
 Request item page
 Requests History page
 Notifications page
 Account settings + logout options
-User Guide
+# User Guide
 The code provides login/sign-up pages for the users (employees). Sign-up registers employee in the Mongo database; regular employee or supervisor.
 
 After signing in, users are greeted by the Home Page.
